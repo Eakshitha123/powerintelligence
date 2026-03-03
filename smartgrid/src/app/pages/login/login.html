@@ -1,0 +1,113 @@
+<div class="landing-page">
+  <!-- HERO -->
+  <section class="hero-section">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-icon">⚡</span>
+        <span>Advanced Energy Operations Platform</span>
+      </div>
+
+      <h1 class="hero-title">GridLite Local</h1>
+      <p class="hero-subtitle">Intelligent Energy Distribution Management</p>
+      <p class="hero-description">
+        Real-time grid analytics, predictive risk scoring, and intelligent asset management
+        for energy distribution networks. Multi-role collaboration platform built for modern operations.
+      </p>
+
+      <div class="cta-group">
+        <button class="cta-btn cta-primary" (click)="scrollTo(rolesSection)">Get Started</button>
+        <button class="cta-btn cta-secondary" (click)="scrollTo(faqSection)">Learn More ↗</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="stat-card">
+      <div class="stat-number">5</div>
+      <div class="stat-label">User Roles</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">8+</div>
+      <div class="stat-label">Analytics Views</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">Real-time</div>
+      <div class="stat-label">Risk Scoring</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">Data Privacy</div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section" #faqSection>
+    <div class="section-header">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <p class="section-subtitle">Everything you need to know about GridLite Local</p>
+    </div>
+
+    <div class="faq-container">
+      <div
+        class="faq-item"
+        *ngFor="let f of faqs; let i = index"
+        [class.open]="openFaqIndex === i"
+      >
+        <div class="faq-question" (click)="toggleFaq(i)">
+          <span class="faq-question-text">{{ f.q }}</span>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-text">{{ f.a }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROLE SELECTION -->
+  <section class="roles-section" #rolesSection>
+    <div class="roles-container">
+      <div class="section-header">
+        <h2 class="section-title">Select Your Role</h2>
+        <p class="section-subtitle">Choose your profile to explore tailored functionality</p>
+      </div>
+
+      <div class="disclaimer-box">
+        <strong>⚠️ Demo Environment</strong> — Front-end demo with sample data only. No backend connectivity.
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <label class="role-selection-label">Choose Your Access Level</label>
+
+        <div class="role-options">
+          <label
+            class="role-option"
+            *ngFor="let r of roles"
+            [class.active]="selectedRole === r.key"
+          >
+            <input
+              type="radio"
+              name="role"
+              [value]="r.key"
+              [(ngModel)]="selectedRole"
+              required
+            />
+            <div class="role-icon">{{ r.icon }}</div>
+            <div class="role-name">{{ r.name }}</div>
+            <div class="role-description">{{ r.description }}</div>
+          </label>
+        </div>
+
+        <div class="action-section">
+          <button type="submit" class="submit-btn">Enter Platform →</button>
+        </div>
+      </form>
+
+      <div class="footer-note">
+        💡 Each role has different pages and data access permissions. Try all roles to explore!
+      </div>
+    </div>
+  </section>
+</div>

@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet],          // keep RouterOutlet imported
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],         // must be plural (array)
 })
-export class App {
+export class AppComponent {
   protected readonly title = signal('smartgrid');
 }

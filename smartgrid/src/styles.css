@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+/* ✅ Use relative paths without a leading slash */
+@import 'assets/css/tokens.css';
+@import 'assets/css/app.css';
