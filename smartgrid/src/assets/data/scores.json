@@ -1,0 +1,17 @@
+{
+  "feeder": {
+    "feeder_id": "FD-BLR-011",
+    "loss_ratio_excess": 0.18,
+    "sudden_billing_drop_z": 1.1,
+    "seasonal_dev_z": 0.7,
+    "consumer_vs_billing_gap": 0.5,
+    "agg_nilm_anomaly_rate": 0.22,
+    "risk_score": 73
+  },
+  "transformers": [
+    {"dt_id": "DT-011-B", "dt_risk": 88, "top_factors": ["L/C p95=1.31", "3 outages/30d", "phase imbalance proxy=0.36"]},
+    {"dt_id": "DT-011-D", "dt_risk": 76, "top_factors": ["No maint 41 mo", "2 outages/30d", "night baseload shift"]},
+    {"dt_id": "DT-011-A", "dt_risk": 62, "top_factors": ["L/C p95=0.98", "thermal alerts history", "imbalance proxy=0.21"]},
+    {"dt_id": "DT-011-C", "dt_risk": 38, "top_factors": ["Stable load", "recent maintenance", "low anomalies"]}
+  ]
+}

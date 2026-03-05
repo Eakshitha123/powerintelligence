@@ -1,0 +1,99 @@
+<section class="page-layout">
+  <div class="page-header">
+    <h1 class="page-title">{{ title }}</h1>
+    <p class="page-subtitle">Identify loss patterns, billing anomalies, and theft risk drivers</p>
+  </div>
+
+  <!-- Centered container for KPIs -->
+  <div class="kpi-wrap" *ngIf="!loading() && !error()">
+    <div class="kpi-section">
+      <div class="kpi-tile kpi-xl">
+        <div class="kpi-label">FEEDER RISK</div>
+        <div class="kpi-value emphasize">{{ feederRiskValue }}%</div>
+        <div class="kpi-subtle">{{ feederRiskLabel }}</div>
+      </div>
+
+      <div class="kpi-tile kpi-xl">
+        <div class="kpi-label">LOSS %</div>
+        <div class="kpi-value emphasize">{{ lossPercent() }}</div>
+        <!-- NOTE: No arrows in interpolation; arrow is set via CSS ::before -->
+        <div
+          class="trend-badge mt-sm"
+          [ngClass]="{
+            'trend-down': lossTrend().dir === 'down',
+            'trend-up': lossTrend().dir === 'up'
+          }"
+        >
+          {{ lossTrend().delta }}%
+        </div>
+      </div>
+
+      <div class="kpi-tile kpi-xl" *ngIf="latest() as l">
+        <div class="kpi-label">CONSUMERS</div>
+        <div class="kpi-value emphasize">{{ formatNumber(l.consumer_count) }}</div>
+      </div>
+
+      <div class="kpi-tile kpi-xl" *ngIf="latest() as l">
+        <div class="kpi-label">COLLECTIONS</div>
+        <div class="kpi-value emphasize">{{ formatCurrency(l.coll_amount_inr) }}</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="status" *ngIf="loading()">Loading…</div>
+  <div class="status error" *ngIf="error()">{{ error() }}</div>
+
+  <!-- Keep canvases in DOM; hide while loading/error -->
+  <div class="chart-container" [class.hidden]="loading() || !!error()">
+    <div class="chart-title">Monthly Input vs Billed (with Loss Trend)</div>
+    <canvas #feederChartCanvas></canvas>
+  </div>
+
+  <div class="chart-container" [class.hidden]="loading() || !!error()">
+    <div class="chart-title">Loss Index Trend</div>
+    <canvas #anomalyChartCanvas></canvas>
+  </div>
+
+  <div class="actions">
+    <button class="btn btn-primary" (click)="recalculateScores()">Recalculate Scores</button>
+    <button class="btn btn-secondary" (click)="exportCSV()">Export CSV</button>
+    <button class="btn btn-secondary" (click)="exportPDF()">Export PDF</button>
+  </div>
+
+  <div class="card" id="feeder-export-card" *ngIf="!loading() && !error()">
+    <h3>Monthly Data</h3>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th class="sortable-th" (click)="sortTable('period')">Period</th>
+          <th class="sortable-th" (click)="sortTable('input_kWh')">Input (kWh)</th>
+          <th class="sortable-th" (click)="sortTable('billed_kWh')">Billed (kWh)</th>
+          <th class="sortable-th" (click)="sortTable('loss_percent')">Loss %</th>
+          <th class="sortable-th" (click)="sortTable('consumer_count')">Consumers</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let row of data()">
+          <td>{{ formatMonthYear(row.period) }}</td>
+          <td>{{ formatKWh(row.input_kWh) }}</td>
+          <td>{{ formatKWh(row.billed_kWh) }}</td>
+          <td>
+            <span [style.color]="calcLoss(row) > 15 ? 'var(--danger)' : 'var(--text)'">
+              {{ calcLoss(row) }}%
+            </span>
+          </td>
+          <td>{{ formatNumber(row.consumer_count) }}</td>
+          <td>
+            <!-- Proper rounded outline button for details -->
+            <button class="btn btn-outline btn-small" (click)="onViewDetails(row)">
+              Details
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
