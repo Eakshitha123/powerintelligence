@@ -54,8 +54,7 @@
   --sp-4xl: 64px;
 
   /* Typography - Professional Scale */
-  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   --font-mono: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   
   --font-size-xs: 11px;
@@ -98,7 +97,6 @@
   /* Glassmorphism */
   --glass-bg: rgba(21, 27, 40, 0.7);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-blur: blur(10px);
 
   /* Transitions */
   --transition-fast: 150ms ease;
@@ -248,68 +246,6 @@ code {
   border-radius: var(--radius-sm);
   font-size: 0.9em;
   color: var(--accent);
-}
-
-/* Utility Classes */
-.text-primary {
-  color: var(--primary);
-}
-
-.text-success {
-  color: var(--success);
-}
-
-.text-danger {
-  color: var(--danger);
-}
-
-.text-warn {
-  color: var(--warn);
-}
-
-.text-muted {
-  color: var(--text-muted);
-}
-
-.text-center {
-  text-align: center;
-}
-
-.font-bold {
-  font-weight: var(--font-weight-bold);
-}
-
-.font-semibold {
-  font-weight: var(--font-weight-semibold);
-}
-
-.font-medium {
-  font-weight: var(--font-weight-medium);
-}
-  font-weight: 600;
-  margin-bottom: var(--sp-sm);
-}
-
-p {
-  margin-bottom: var(--sp-md);
-}
-
-small {
-  font-size: var(--font-size-xs);
-  color: var(--subtle);
-}
-
-  font-weight: 600;
-  margin-bottom: var(--sp-sm);
-}
-
-p {
-  margin-bottom: var(--sp-md);
-}
-
-small {
-  font-size: var(--font-size-xs);
-  color: var(--text-muted);
 }
 
 /* Buttons - Production Grade */
@@ -512,7 +448,7 @@ label {
 }
 
 .text-muted {
-  color: var(--subtle);
+  color: var(--text-muted);
 }
 
 .text-sm {
@@ -527,8 +463,12 @@ label {
   font-weight: 600;
 }
 
-.opacity-50 {
-  opacity: 0.5;
+.font-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+
+.font-medium {
+  font-weight: var(--font-weight-medium);
 }
 
 /* Cards */
@@ -566,7 +506,7 @@ label {
 
 .kpi-label {
   font-size: var(--font-size-sm);
-  color: var(--subtle);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -631,7 +571,7 @@ label {
 
 .trend-neutral {
   background-color: rgba(159, 179, 200, 0.2);
-  color: var(--subtle);
+  color: var(--text-muted);
 }
 
 /* Data Table */
@@ -651,7 +591,7 @@ label {
   text-align: left;
   font-weight: 600;
   font-size: var(--font-size-sm);
-  color: var(--subtle);
+  color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   white-space: nowrap;
@@ -734,7 +674,7 @@ label {
 .close-btn {
   background: none;
   border: none;
-  color: var(--subtle);
+  color: var(--text-muted);
   font-size: var(--font-size-xl);
   cursor: pointer;
   padding: 0;
@@ -768,7 +708,7 @@ label {
   cursor: pointer;
   font-weight: 500;
   border-bottom: 2px solid transparent;
-  transaction: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .tab-btn.active {

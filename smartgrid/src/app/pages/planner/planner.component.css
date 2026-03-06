@@ -1,0 +1,308 @@
+/* CSS Variables for Modern Theming */
+:root {
+  --primary: #2dd4bf;
+  --primary-400: #5eead4;
+  --primary-600: #0d9488;
+  --accent: #60a5fa;
+  --bg: #0f172a;
+  --bg-alt: #1e293b;
+  --card: rgba(30, 41, 59, 0.8);
+  --card-hover: rgba(51, 65, 85, 0.9);
+  --text: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --line: rgba(71, 85, 105, 0.5);
+  --muted: rgba(30, 41, 59, 0.5);
+  --warn: #f59e0b;
+  --warn-light: #fbbf24;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+  --sp-sm: 8px;
+  --sp-md: 16px;
+  --sp-lg: 24px;
+  --sp-xl: 32px;
+  --sp-2xl: 48px;
+  --sp-3xl: 64px;
+  --font-size-sm: 14px;
+  --font-size-lg: 18px;
+}
+
+* { box-sizing: border-box; }
+
+:host { display: block; }
+
+.planner {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 50%, #0a0f1a 100%);
+  padding: 40px 60px;
+  display: grid;
+  gap: 40px;
+  color: var(--text);
+  position: relative;
+  overflow-x: hidden;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.route-summary {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, var(--card) 0%, var(--card-hover) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideInDown 0.6s ease-out;
+}
+.title {
+  font-size: 56px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-400) 50%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 20px 0;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+.sub {
+  font-size: 24px;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+.meta {
+  font-size: 18px;
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* Checklist Section */
+.checklist {
+  background: linear-gradient(135deg, var(--card) 0%, var(--card-hover) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideInUp 0.8s ease-out;
+}
+.checklist h4 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 30px 0;
+}
+.checklist ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.checklist li {
+  margin: 18px 0;
+}
+.checklist label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  transition: background 0.2s;
+  font-size: 16px;
+}
+.checklist label:hover {
+  background: rgba(45, 212, 191, 0.1);
+}
+.checklist input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Work List Section */
+.work-list {
+  display: grid;
+  gap: 24px;
+}
+.work-item {
+  background: linear-gradient(135deg, var(--card) 0%, var(--card-hover) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+  animation: slideInUp 1s ease-out;
+}
+.work-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+}
+.work-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+.work-head strong {
+  font-size: 22px;
+  color: var(--text);
+  font-weight: 700;
+}
+.priority {
+  font-weight: 700;
+  color: var(--primary);
+  background: rgba(45, 212, 191, 0.25);
+  padding: 10px 20px;
+  border-radius: var(--radius-full);
+  font-size: 18px;
+  min-width: 70px;
+  text-align: center;
+}
+.work-meta {
+  display: flex;
+  gap: 32px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  align-items: center;
+}
+.risk {
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-lg);
+  font-size: 15px;
+  display: inline-block;
+}
+.risk-low {
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.15);
+}
+.risk-medium {
+  color: #facc15;
+  background: rgba(250, 204, 21, 0.15);
+}
+.risk-high {
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.15);
+}
+
+/* Reorder Buttons */
+.reorder {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+.reorder button {
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--muted) 0%, var(--card) 100%);
+  color: var(--text);
+  padding: 10px 18px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: 600;
+  font-size: 14px;
+}
+.reorder button:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.15) 0%, rgba(45, 212, 191, 0.08) 100%);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+.reorder button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Export Actions */
+.exports {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 40px;
+  background: linear-gradient(135deg, var(--card) 0%, var(--card-hover) 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideInUp 1.2s ease-out;
+}
+.exports button {
+  border: none;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
+  color: var(--bg);
+  padding: 14px 32px;
+  border-radius: var(--radius-lg);
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.25);
+  font-size: 16px;
+}
+.exports button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 40px rgba(45, 212, 191, 0.4);
+}
+
+/* Animations */
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .planner {
+    padding: 30px 40px;
+    gap: 30px;
+  }
+  .title {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 768px) {
+  .planner {
+    padding: 20px;
+    gap: 20px;
+  }
+  .route-summary {
+    padding: 40px 20px;
+  }
+  .title {
+    font-size: 32px;
+  }
+  .sub {
+    font-size: 18px;
+  }
+  .meta {
+    font-size: 14px;
+  }
+  .checklist,
+  .work-item,
+  .exports {
+    padding: 24px;
+  }
+  .work-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .work-meta {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .exports {
+    flex-direction: column;
+  }
+  .exports button {
+    width: 100%;
+  }
+}

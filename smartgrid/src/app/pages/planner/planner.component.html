@@ -1,0 +1,59 @@
+<div class="planner">
+  <!-- Header -->
+  <section class="route-summary" *ngIf="route as r">
+    <h4 class="title">{{ title }}</h4>
+    <div class="sub">{{ subtitle }}</div>
+    <div class="meta">
+      <strong>{{ r.name }}</strong> •
+      {{ formatDistance(r.distance_km) }} •
+      ~{{ formatDuration(r.eta_min) }} •
+      Stops: {{ r.stops.length }}
+    </div>
+  </section>
+
+  <!-- Checklist -->
+  <section class="checklist">
+    <h4>Pre-visit checklist</h4>
+    <ul>
+      <li *ngFor="let item of checklistItems">
+        <label>
+          <input
+            type="checkbox"
+            [checked]="checklistState[item.id]"
+            (change)="onChecklistChange(item.id, $event.target.checked)"
+          />
+          {{ item.label }}
+        </label>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Work items (no drag & drop; simple up/down reorder) -->
+  <section class="work-list">
+    <div class="work-item" *ngFor="let item of workItems; let i = index">
+      <div class="work-head">
+        <strong>{{ item.dt_id }}</strong>
+        <span class="priority" title="Priority score">{{ item.priority }}</span>
+      </div>
+
+      <div class="work-meta">
+        <span>Consumers: {{ item.consumers }}</span>
+        <span class="risk" [ngClass]="item.riskLabel">{{ item.riskText }}</span>
+      </div>
+
+      
+
+      <div class="reorder">
+        <button type="button" (click)="moveUp(i)" [disabled]="i === 0">▲ Up</button>
+        <button type="button" (click)="moveDown(i)" [disabled]="i === workItems.length - 1">▼ Down</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Export actions -->
+  <section class="exports">
+    <button type="button" (click)="optimizeRoute()">Optimize route</button>
+    <button type="button" (click)="exportRoute()">Export route (JSON)</button>
+    <button type="button" (click)="exportCSV()">Export work orders (CSV)</button>
+  </section>
+</div>

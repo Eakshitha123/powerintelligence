@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Weekly Maintenance Route",
+    "distance_km": 4.6,
+    "eta_min": 38,
+    "stops": [
+      { "dt_id": "DT-104" },
+      { "dt_id": "DT-101" },
+      { "dt_id": "DT-102" },
+      { "dt_id": "DT-105" }
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+[
+  { "dt_id": "DT-101", "kva_rating": 250, "consumers": 114 },
+  { "dt_id": "DT-102", "kva_rating": 400, "consumers": 186 },
+  { "dt_id": "DT-103", "kva_rating": 160, "consumers": 72 },
+  { "dt_id": "DT-104", "kva_rating": 630, "consumers": 298 },
+  { "dt_id": "DT-105", "kva_rating": 100, "consumers": 41 }
+]

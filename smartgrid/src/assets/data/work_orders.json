@@ -1,0 +1,32 @@
+[
+  {
+    "dt_id": "DT-101",
+    "status": "OPEN",
+    "assigned_to": "Alex",
+    "actions": ["Inspect bushings", "Tighten lugs", "Capture photos"]
+  },
+  {
+    "dt_id": "DT-102",
+    "status": "OPEN",
+    "assigned_to": "Priya",
+    "actions": ["Thermal scan", "Oil level check"]
+  },
+  {
+    "dt_id": "DT-103",
+    "status": "CLOSED",
+    "assigned_to": "Ravi",
+    "actions": ["Tap changer verify", "Report upload"]
+  },
+  {
+    "dt_id": "DT-104",
+    "status": "IN_PROGRESS",
+    "assigned_to": "Meera",
+    "actions": ["Ground inspection", "Noise observation"]
+  },
+  {
+    "dt_id": "DT-105",
+    "status": "OPEN",
+    "assigned_to": "",
+    "actions": ["Visual inspection"]
+  }
+]
