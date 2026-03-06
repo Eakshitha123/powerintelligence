@@ -1,0 +1,119 @@
+<div class="page-layout">
+  <div class="page-header">
+    <h1 class="page-title">My Home Dashboard</h1>
+    <p class="page-subtitle">Appliance insights, bill optimization, and safety alerts</p>
+  </div>
+
+  <div class="privacy-notice">
+    <strong>🔒 Your Privacy:</strong>
+    Appliance details are visible only to you. The utility receives only anonymized aggregates at transformer level.
+  </div>
+
+  <!-- KPI tiles -->
+  <div class="kpi-section">
+    <div class="kpi-tile">
+      <div class="kpi-label">Last 30 Days</div>
+      <div class="kpi-value">{{ kpiConsumption }}</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Bill Forecast</div>
+      <div class="kpi-value">{{ kpiBillForecast }}</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">ToD Savings</div>
+      <div class="kpi-value">{{ kpiToDSavings }}</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Safety Alerts</div>
+      <div class="kpi-value">{{ kpiAlertCount }}</div>
+    </div>
+  </div>
+
+  <!-- Charts (always in DOM; no *ngIf) -->
+  <div class="chart-container" [hidden]="!household">
+    <div class="chart-title">Hourly Consumption Profile (Today)</div>
+    <canvas #hourlyCanvas></canvas>
+  </div>
+
+  <div class="chart-container" [hidden]="!household">
+    <div class="chart-title">Appliance Energy Split (Last 30 Days)</div>
+    <canvas #applianceCanvas></canvas>
+  </div>
+
+  <!-- Appliances -->
+  <div class="card" *ngIf="household">
+    <h3>My Appliances</h3>
+    <div id="appliances-container" class="appliances-container">
+      <div class="appliance-card" *ngFor="let app of household?.appliances">
+        <div class="appliance-header">
+          <div class="appliance-name">{{ app.name }}</div>
+          <div class="appliance-power">{{ app.watt }}W</div>
+        </div>
+
+        <div class="appliance-bar">
+          <div
+            class="appliance-fill"
+            [style.width.%]="appliancePercent((household?.appliance_split_kWh?.find(x => x.appliance === app.name)?.kWh) || 0)">
+          </div>
+        </div>
+
+        <div class="appliance-stats">
+          <span>
+            {{
+              (household?.appliance_split_kWh?.find(x => x.appliance === app.name)?.kWh || 0)
+              | number : '1.1-1'
+            }} kWh
+          </span>
+          <span>
+            {{
+              appliancePercent((household?.appliance_split_kWh?.find(x => x.appliance === app.name)?.kWh) || 0)
+              | number : '1.0-1'
+            }}% of total
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smart Tips -->
+  <div class="card mt-lg">
+    <h3>💡 Smart Tips for Savings</h3>
+    <div class="tips-container">
+      <div class="insight-card" *ngFor="let t of tips">
+        <div class="insight-icon">{{ t.icon }}</div>
+        <div class="insight-title">{{ t.title }}</div>
+        <div class="insight-text">{{ t.text }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Safety Alerts -->
+  <div class="card mt-lg" *ngIf="household?.nilm_events?.length">
+    <h3>⚠ Safety Alerts</h3>
+    <div id="alerts-container" class="alerts-container">
+      <div class="alert warning" *ngFor="let e of household?.nilm_events; index as i" [class.ack]="e._ack">
+        <div class="alert-title">⚠ {{ e.appliance }} — {{ e.event?.toUpperCase() }}</div>
+        <div class="alert-message">
+          Detected on {{ formatDateTime(e.ts) }}<br />
+          Duration: {{ e.duration_min }}min | Cost impact: {{ '₹ ' + (e.estimated_cost_inr | number : '1.0-0') }}
+        </div>
+        <div class="alert-action">
+          <button class="btn btn-small btn-secondary" (click)="acknowledgeAlert(i)" [disabled]="e._ack">
+            {{ e._ack ? '✓ Acknowledged' : 'Acknowledge' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export -->
+  <div class="action-row mt-lg" *ngIf="household">
+    <button class="btn btn-secondary" (click)="exportHourlyCSV()">Export Hourly CSV</button>
+    <button class="btn btn-secondary" (click)="exportBillPDF()">Export Bill PDF</button>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" *ngIf="toast.visible" [ngClass]="toast.type">
+    {{ toast.message }}
+  </div>
+</div>

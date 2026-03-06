@@ -1,6 +1,6 @@
-
 // src/app/app.routes.ts
 import { Routes } from '@angular/router';
+
 import { LoginComponent } from './pages/login/login';
 import { PlannerComponent } from './pages/planner/planner.component';
 // If you have placeholders for the other pages, import them too:
@@ -12,7 +12,6 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
 
-  // Temporary placeholders so navigation works:
   { path: 'map', component: MapsComponent },
   // { path: 'planner', component: PlannerComponent },
    { path: 'feeder', component: FeederComponent },
@@ -21,4 +20,3 @@ export const routes: Routes = [
   { path: 'planner', component: PlannerComponent },
   { path: '**', redirectTo: 'login' },
 ];
-

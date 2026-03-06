@@ -1,0 +1,49 @@
+{
+  "household_profile": {
+    "house_id": "H-9Q9WQ3",
+    "dt_id": "DT-011-A",
+    "address_text": "#42, 5th Cross, Koramangala",
+    "tod_tariff": "KA-Demo-2026",
+    "consent_status": "granted"
+  },
+  "appliances": [
+    {"id": "app-ac", "name": "AC (1.5T)", "watt": 1400, "category": "HVAC", "is_critical": false},
+    {"id": "app-fridge", "name": "Refrigerator", "watt": 180, "category": "Cold Chain", "is_critical": true},
+    {"id": "app-geyser", "name": "Geyser", "watt": 2000, "category": "Water Heating", "is_critical": false},
+    {"id": "app-wm", "name": "Washing Machine", "watt": 600, "category": "Motor", "is_critical": false},
+    {"id": "app-tv", "name": "TV", "watt": 110, "category": "Electronics", "is_critical": false}
+  ],
+  "last_30d_consumption_kWh": 285.4,
+  "forecast_month_bill_inr": 2180,
+  "hourly_profile_sample": [
+    {"ts": "2026-02-20T07:00:00+05:30", "kW": 0.45},
+    {"ts": "2026-02-20T08:00:00+05:30", "kW": 0.62},
+    {"ts": "2026-02-20T09:00:00+05:30", "kW": 0.51},
+    {"ts": "2026-02-20T10:00:00+05:30", "kW": 0.38},
+    {"ts": "2026-02-20T11:00:00+05:30", "kW": 0.42},
+    {"ts": "2026-02-20T12:00:00+05:30", "kW": 0.55},
+    {"ts": "2026-02-20T13:00:00+05:30", "kW": 1.2},
+    {"ts": "2026-02-20T14:00:00+05:30", "kW": 1.8},
+    {"ts": "2026-02-20T15:00:00+05:30", "kW": 1.5},
+    {"ts": "2026-02-20T16:00:00+05:30", "kW": 0.8},
+    {"ts": "2026-02-20T17:00:00+05:30", "kW": 0.6},
+    {"ts": "2026-02-20T18:00:00+05:30", "kW": 0.9},
+    {"ts": "2026-02-20T19:00:00+05:30", "kW": 2.1},
+    {"ts": "2026-02-20T20:00:00+05:30", "kW": 2.5},
+    {"ts": "2026-02-20T21:00:00+05:30", "kW": 1.8},
+    {"ts": "2026-02-20T22:00:00+05:30", "kW": 1.1},
+    {"ts": "2026-02-20T23:00:00+05:30", "kW": 0.5}
+  ],
+  "nilm_events": [
+    {"ts": "2026-02-19T22:34:00+05:30", "appliance": "Geyser", "event": "left-on", "duration_min": 63, "estimated_cost_inr": 12.5},
+    {"ts": "2026-02-21T14:05:00+05:30", "appliance": "AC (1.5T)", "event": "overload", "duration_min": 8, "estimated_cost_inr": 5.8}
+  ],
+  "appliance_split_kWh": [
+    {"appliance": "AC (1.5T)", "kWh": 112.3},
+    {"appliance": "Refrigerator", "kWh": 58.0},
+    {"appliance": "Geyser", "kWh": 61.5},
+    {"appliance": "Washing Machine", "kWh": 24.7},
+    {"appliance": "TV", "kWh": 14.3},
+    {"appliance": "Others", "kWh": 14.6}
+  ]
+}

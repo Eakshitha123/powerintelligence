@@ -1,0 +1,50 @@
+<!-- Corner rectangle button (right-top). Hidden on landing/login. -->
+<button
+  *ngIf="!hideHeader()"
+  class="menu-btn"
+  type="button"
+  (click)="toggle()"
+  [attr.aria-expanded]="drawerOpen()"
+  aria-controls="app-drawer"
+  aria-label="Open menu">
+  <span class="btn-text">Menu</span>
+  <span class="btn-arrow" [class.open]="drawerOpen()" aria-hidden="true">›</span>
+</button>
+
+<!-- Backdrop -->
+<div
+  *ngIf="drawerOpen()"
+  class="backdrop"
+  (click)="close()"
+  aria-hidden="true">
+</div>
+
+<!-- Right drawer -->
+<aside
+  *ngIf="drawerOpen()"
+  id="app-drawer"
+  class="drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Navigation menu">
+
+  <header class="drawer-header">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">⚡</span>
+      <span class="brand-title">Smartgrid</span>
+    </div>
+    <button class="close" (click)="close()" aria-label="Close menu">×</button>
+  </header>
+
+  <nav class="menu" role="navigation" aria-label="Primary">
+    <a
+      *ngFor="let it of navItems"
+      [routerLink]="it.route"
+      class="menu-link"
+      (click)="close()">
+      <span class="label">{{ it.label }}</span>
+      <span class="arrow" aria-hidden="true">›</span>
+    </a>
+  </nav>
+
+</aside>
