@@ -1,0 +1,10 @@
+.app-root {
+  min-height: 100dvh;       /* full height including mobile dynamic viewport */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push footer to bottom if content is short */
+router-outlet + app-footer {
+  margin-top: auto;
+}

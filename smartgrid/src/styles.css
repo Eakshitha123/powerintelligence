@@ -1,4 +1,5 @@
 /* src/styles.css */
 /* ✅ Use relative paths without a leading slash */
+@import 'leaflet/dist/leaflet.css';
 @import 'assets/css/tokens.css';
 @import 'assets/css/app.css';

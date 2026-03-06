@@ -1,0 +1,227 @@
+/* =========================================================
+   MAP CONTAINER + MAP CANVAS
+   ---------------------------------------------------------
+   The map will NOT render overlays correctly unless the
+   container has an explicit height. These rules guarantee it.
+   ========================================================= */
+
+.map-container {
+  position: relative;
+  /* Adjust the next line if your header/controls are taller/shorter */
+  height: calc(100vh - 220px);
+  min-height: 420px;
+  width: 100%;
+
+  border: 1px solid var(--line, #e5e5e5);
+  border-radius: var(--radius-lg, 8px);
+  overflow: hidden;
+  background: var(--card, #fff);
+}
+
+/* Keep map responsive inside .map-container */
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure Leaflet panes sit below your fixed overlays/drawers if any */
+.leaflet-container {
+  z-index: 0;
+}
+
+/* Optional: sharper tiles on high-DPI displays */
+.leaflet-container img {
+  image-rendering: auto;
+}
+
+/* =========================================================
+   CONTROLS / LEGEND (optional polish; safe defaults)
+   ========================================================= */
+.map-controls {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.map-control-group .map-control-label {
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.map-legend {
+  background: var(--card, #fff);
+  border: 1px solid var(--line, #eee);
+  border-radius: var(--radius-lg, 8px);
+  padding: 10px 12px;
+  width: max-content;
+}
+
+.legend-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+/* =========================================================
+   DRAWER
+   Keep your existing behavior: hidden by default; visible when .active
+   ========================================================= */
+
+/* Drawer visibility (same as original) */
+.detail-drawer {
+  display: none;
+}
+
+/* When active, show it */
+.detail-drawer.active {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Positioning above the map and other UI */
+.detail-drawer {
+  position: fixed;
+  right: var(--sp-lg, 20px);
+  top: calc(var(--sp-3xl, 48px) + 20px);
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background: var(--card, #fff);
+  border: 1px solid var(--line, #e8e8e8);
+  border-radius: var(--radius-lg, 8px);
+  box-shadow: var(--shadow-xl, 0 12px 30px rgba(0,0,0,.12));
+  z-index: var(--z-drawer, 1000);
+  padding: 16px;
+}
+
+/* Sections inside the drawer */
+.drawer-section { margin-bottom: 16px; }
+
+/* Close button style (optional) */
+.close-btn {
+  border: none;
+  background: #f0f0f0;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+/* =========================================================
+   KPI / Pills (from your original intent)
+   ========================================================= */
+.score-pill {
+  padding: 6px 10px;
+  border-radius: 18px;
+  display: inline-block;
+  color: #fff;
+}
+.score-pill.very-low { background: #52c41a; }
+.score-pill.low { background: #13c2c2; }
+.score-pill.medium { background: #fadb14; color: #222; }
+.score-pill.high { background: #fa8c16; }
+.score-pill.very-high { background: #cf1322; }
+
+/* =========================================================
+   TOASTS
+   ========================================================= */
+.toast {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: #333;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  opacity: .95;
+  z-index: 1200;
+}
+.toast.success { background:#52c41a; }
+.toast.info { background:#1677ff; }
+.toast.error { background:#cf1322; }
+
+/* =========================================================
+   Small screens: keep the map usable
+   ========================================================= */
+@media (max-width: 768px) {
+  .map-container {
+    height: calc(100vh - 280px);
+    min-height: 360px;
+  }
+  .detail-drawer {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+  }
+}
+/* Floating legend (Leaflet control) */
+.gl-legend-host { background: transparent; border: none; box-shadow: none; }
+.gl-legend {
+  background: #0B1220;      /* dark navy */
+  color: #E6EEF8;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #1F2A44;
+  width: 240px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+}
+.gl-legend-title {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+.gl-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+.gl-swatch {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.gl-label {
+  line-height: 16px;
+  color: #D6E2F5;
+}
+/* LEGEND PANEL ON PAGE */
+.page-legend {
+  background: #0B1220;              /* dark navy */
+  color: #E6EEF8;                   /* soft white/gray */
+  border-radius: 16px;
+  padding: 18px 22px;
+  width: 260px;
+  border: 1px solid #1F2A44;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.35);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin-top: 20px;
+}
+
+.legend-title {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+}
+
+.legend-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+.legend-label {
+  color: #D6E2F5;
+  font-size: 15px;
+}

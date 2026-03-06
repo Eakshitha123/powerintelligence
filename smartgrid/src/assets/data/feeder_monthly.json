@@ -1,0 +1,14 @@
+[
+  {"period": "2024-03", "feeder_id": "FD-BLR-011", "input_kWh": 1500000, "billed_kWh": 1305000, "consumer_count": 7825, "coll_amount_inr": 90600000},
+  {"period": "2024-04", "feeder_id": "FD-BLR-011", "input_kWh": 1460000, "billed_kWh": 1284000, "consumer_count": 7860, "coll_amount_inr": 89000000},
+  {"period": "2024-05", "feeder_id": "FD-BLR-011", "input_kWh": 1610000, "billed_kWh": 1401000, "consumer_count": 7902, "coll_amount_inr": 97300000},
+  {"period": "2024-06", "feeder_id": "FD-BLR-011", "input_kWh": 1725000, "billed_kWh": 1482000, "consumer_count": 7920, "coll_amount_inr": 102600000},
+  {"period": "2024-07", "feeder_id": "FD-BLR-011", "input_kWh": 1680000, "billed_kWh": 1479000, "consumer_count": 7950, "coll_amount_inr": 101700000},
+  {"period": "2024-08", "feeder_id": "FD-BLR-011", "input_kWh": 1715000, "billed_kWh": 1492000, "consumer_count": 7990, "coll_amount_inr": 102200000},
+  {"period": "2024-09", "feeder_id": "FD-BLR-011", "input_kWh": 1602000, "billed_kWh": 1418000, "consumer_count": 8022, "coll_amount_inr": 96800000},
+  {"period": "2024-10", "feeder_id": "FD-BLR-011", "input_kWh": 1550000, "billed_kWh": 1363000, "consumer_count": 8050, "coll_amount_inr": 94000000},
+  {"period": "2024-11", "feeder_id": "FD-BLR-011", "input_kWh": 1490000, "billed_kWh": 1328000, "consumer_count": 8080, "coll_amount_inr": 91900000},
+  {"period": "2024-12", "feeder_id": "FD-BLR-011", "input_kWh": 1510000, "billed_kWh": 1339000, "consumer_count": 8103, "coll_amount_inr": 92500000},
+  {"period": "2025-01", "feeder_id": "FD-BLR-011", "input_kWh": 1475000, "billed_kWh": 1307000, "consumer_count": 8130, "coll_amount_inr": 90700000},
+  {"period": "2025-02", "feeder_id": "FD-BLR-011", "input_kWh": 1498000, "billed_kWh": 1319000, "consumer_count": 8162, "coll_amount_inr": 91500000}
+]

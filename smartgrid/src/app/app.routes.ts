@@ -4,17 +4,26 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login';
 import { PlannerComponent } from './pages/planner/planner.component';
 // If you have placeholders for the other pages, import them too:
-// import { MapComponent } from './pages/map/map.component'; etc.
+import { MapsComponent } from './pages/maps/maps';
+import { FeederComponent } from './pages/feeder/feeder';
+import { ReportComponent } from './pages/report/report'; 
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
 
   // Temporary placeholders so navigation works:
+<<<<<<< HEAD
   // { path: 'map', component: MapComponent },
    { path: 'planner', component: PlannerComponent },
   // { path: 'feeder', component: FeederComponent },
+=======
+  { path: 'map', component: MapsComponent },
+  // { path: 'planner', component: PlannerComponent },
+   { path: 'feeder', component: FeederComponent },
+>>>>>>> 8d706283e282da08c6bbf3fc5526e926128e324b
   // { path: 'consumer', component: ConsumerComponent },
+  { path: 'report', component: ReportComponent },
 
   { path: '**', redirectTo: 'login' },
 ];
