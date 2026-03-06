@@ -1,0 +1,206 @@
+:host {
+  --text: #e8eef3;
+  --subtle: #9fb3c8;
+  --bg: #0b0e11;
+  --card: #12161a;
+  --muted: #28313a;
+  --primary: #33bfa6;
+  --primary-700: #1a7f6e;
+  --danger: #ff5a5f;
+
+  display: block;
+  color: var(--text);
+}
+
+.page-layout {
+  padding: 1.5rem;
+  background: var(--bg);
+  min-height: 100%;
+}
+
+.page-header { margin: 0 auto 1.25rem; max-width: 1200px; }
+.page-header .page-title { margin: 0; font-size: 1.75rem; color: var(--primary); }
+.page-header .page-subtitle { margin: .35rem 0 0; color: var(--subtle); }
+
+/* Center the KPI grid */
+.kpi-wrap {
+  max-width: 1200px;
+  margin: 0 auto 1.5rem;
+}
+
+.kpi-section {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+/* Larger KPI tiles with center alignment */
+.kpi-tile {
+  position: relative;
+  background: radial-gradient(120% 120% at 0% 0%, rgba(51,191,166,0.06), rgba(18,22,26,0.7)),
+              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  border: 1px solid rgba(159, 179, 200, 0.14);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem;
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25) inset, 0 2px 8px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* XL sizing (apply to all four tiles) */
+.kpi-xl {
+  min-height: 180px;
+  padding: 1.5rem 1.25rem;
+}
+
+.kpi-label {
+  color: var(--subtle);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.kpi-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #aaf4e8;
+  text-align: center;
+}
+.kpi-value.emphasize {
+  font-size: 2rem;
+}
+
+.kpi-subtle {
+  font-size: .9rem;
+  color: var(--subtle);
+  margin-top: .5rem;
+}
+
+/* Trend pill with arrow via CSS */
+.trend-badge {
+  margin-top: .65rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .25rem .6rem;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+  background: rgba(51, 191, 166, 0.12);
+  color: #9ff0d9;
+  position: relative;
+}
+.trend-badge::before {
+  content: '↑';                /* default up */
+  display: inline-block;
+  font-weight: 900;
+}
+.trend-badge.trend-down {
+  background: rgba(215, 48, 39, 0.12);
+  color: #ffb3ad;
+}
+.trend-badge.trend-down::before {
+  content: '↓';
+}
+
+/* Charts */
+.chart-container {
+  max-width: 1200px;
+  margin: 0 auto 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--muted);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.chart-container .chart-title {
+  margin-bottom: .75rem;
+  color: var(--subtle);
+  font-size: .95rem;
+}
+.chart-container canvas { width: 100%; height: 360px; display: block; }
+
+/* Actions centered */
+.actions {
+  max-width: 1200px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+/* Cards & table */
+.card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--card);
+  border: 1px solid var(--muted);
+  border-radius: 12px;
+  padding: 1rem;
+}
+.card h3 { margin: 0 0 .75rem; }
+
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { padding: .7rem .6rem; border-bottom: 1px solid var(--muted); }
+.data-table th { text-align: left; color: var(--subtle); font-weight: 600; }
+.data-table .sortable-th { cursor: pointer; }
+
+/* Buttons */
+.btn {
+  border: 1px solid var(--muted);
+  background: #192026;
+  color: var(--text);
+  padding: .55rem .95rem;
+  border-radius: .6rem;
+  cursor: pointer;
+  transition: transform .06s ease, background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary-700);
+  color: #0b0e11;
+  font-weight: 700;
+}
+.btn.btn-secondary { background: #192026; }
+.btn.btn-small { padding: .4rem .7rem; font-size: .86rem; }
+
+/* Outline pill button for table "Details" */
+.btn-outline {
+  background: transparent;
+  color: #aaf4e8;
+  border-color: rgba(159, 179, 200, 0.35);
+  border-radius: 999px;
+}
+.btn-outline:hover {
+  background: rgba(51,191,166,0.1);
+  border-color: rgba(51, 191, 166, 0.6);
+  color: #c8fff1;
+}
+
+/* Status + utility */
+.status { color: var(--subtle); max-width: 1200px; margin: 0 auto 1rem; }
+.status.error { color: #ff8e8e; }
+
+.mt-sm { margin-top: .5rem; }
+.hidden { display: none; }
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .kpi-section { grid-template-columns: repeat(2, minmax(240px, 1fr)); }
+}
+@media (max-width: 560px) {
+  .kpi-section { grid-template-columns: 1fr; }
+  .kpi-value.emphasize { font-size: 1.8rem; }
+  .chart-container canvas { height: 300px; }
+}

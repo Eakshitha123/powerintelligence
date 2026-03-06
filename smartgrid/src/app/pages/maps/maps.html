@@ -1,0 +1,169 @@
+<div class="page-layout">
+  <div class="page-header">
+    <h1 class="page-title">Feeder Operations Map</h1>
+    <p class="page-subtitle">
+      Real-time view of DT locations, risk levels, household clusters, and outages
+    </p>
+  </div>
+
+  <div class="privacy-notice">
+    <strong>Privacy Notice:</strong>
+    Household layer is anonymized (k≥10). Individual homes are never shown. Only anonymized aggregates visible here.
+  </div>
+
+  <!-- Controls -->
+  <div class="map-controls">
+    <!-- Risk band -->
+    <div class="map-control-group">
+      <div class="map-filter">
+        <label class="map-control-label">Risk Band:</label>
+        <select [(ngModel)]="riskFilter" (change)="applyRiskFilter()">
+          <option value="">All</option>
+          <option value="0">Very Low (0-20%)</option>
+          <option value="20">Low (20-40%)</option>
+          <option value="40">Medium (40-60%)</option>
+          <option value="60">High (60-80%)</option>
+          <option value="80">Very High (80-100%)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Layer toggles -->
+    <div class="map-control-group">
+      <div class="map-filter">
+        <label class="map-control-label">Layers:</label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="layers.feeder"
+                 (change)="toggleLayer('feeder', layers.feeder)" />
+          Feeder Polygon
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="layers.transformers"
+                 (change)="toggleLayer('transformers', layers.transformers)" />
+          DT Markers
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="layers.households"
+                 (change)="toggleLayer('households', layers.households)" />
+          Households
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="layers.outages"
+                 (change)="toggleLayer('outages', layers.outages)" />
+          Outages
+        </label>
+
+        <label>
+          <input type="checkbox" [(ngModel)]="layers.workorders"
+                 (change)="toggleLayer('workorders', layers.workorders)" />
+          Work Orders
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Map container -->
+  <div class="map-container">
+    <div id="map"></div>
+  </div>
+
+  <!-- Drawer -->
+  <div class="detail-drawer" [class.active]="drawerActive" id="detail-drawer">
+    <div class="drawer-section">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 id="dt-name">{{ selectedDT?.dt_id || '' }}</h3>
+        <button class="close-btn" (click)="closeDrawer()">×</button>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="kpi-section" style="display:grid; grid-template-columns:1fr; gap: var(--sp-md);">
+        <div>
+          <small>Risk Score</small>
+          <div class="score-pill" [ngClass]="riskClass(selectedDT?.risk)"
+               style="margin-top: var(--sp-sm);">
+            {{ selectedDT ? (selectedDT.risk | number:'1.0-0') + '%' : '—' }}
+          </div>
+        </div>
+
+        <div>
+          <small>kVA Rating</small>
+          <div style="font-size: var(--font-size-lg); font-weight: 600; margin-top: 4px;">
+            {{ selectedDT ? formatKVA(selectedDT.kva_rating) : '—' }}
+          </div>
+        </div>
+
+        <div>
+          <small>Consumers</small>
+          <div style="font-size: var(--font-size-lg); font-weight: 600; margin-top: 4px;">
+            {{ selectedDT ? formatNumber(selectedDT.consumers) : '—' }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="explainability-section">
+        <div class="explainability-title">Top Risk Drivers</div>
+        <div class="chips">
+          <div class="chip primary" *ngFor="let f of (selectedDT?.topFactors || [])">{{ f }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="action-buttons">
+        <button class="btn btn-primary" (click)="createWorkOrder()">Create Work Order</button>
+        <button class="btn btn-secondary" (click)="downloadDTReport()">PDF Report</button>
+      </div>
+    </div>
+  </div>
+  <!-- PAGE LEGEND PANEL (static, not Leaflet control) -->
+<div class="page-legend">
+  <div class="legend-title">Legend</div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#1a9850;"></span>
+    <span class="legend-label">Very Low Risk (0–10%)</span>
+  </div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#66bd63;"></span>
+    <span class="legend-label">Low Risk (10–20%)</span>
+  </div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#fee08b;"></span>
+    <span class="legend-label">Medium Risk (20–40%)</span>
+  </div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#fdae61;"></span>
+    <span class="legend-label">High Risk (60–80%)</span>
+  </div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#d73027;"></span>
+    <span class="legend-label">Very High Risk (80–100%)</span>
+  </div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#7AC7FF; border:1px solid #4AA3FF;"></span>
+    <span class="legend-label">Household Clusters (k≥10)</span>
+  </div>
+
+  <div class="legend-item">
+    <span class="legend-swatch" style="background:#ff5a5f40; border:1px solid #FF5A5F;"></span>
+    <span class="legend-label">Outage Heat</span>
+  </div>
+</div>
+
+  <!-- Toast -->
+  <div class="toast" *ngIf="toast.visible" [class]="toast.type">
+    {{ toast.message }}
+  </div>
+</div>

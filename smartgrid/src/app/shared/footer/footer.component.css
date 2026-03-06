@@ -1,0 +1,27 @@
+.gl-footer {
+  margin-top: 2rem;
+  padding: 1.25rem 1rem;
+  border-top: 1px solid rgba(159, 179, 200, 0.18);
+  background: linear-gradient(180deg, rgba(18, 22, 26, 0) 0%, rgba(18, 22, 26, 0.6) 100%);
+  color: var(--text, #e8eef3);
+  text-align: center;
+}
+
+.gl-footer p { margin: .35rem 0; }
+
+.gl-footer__links a {
+  color: #9fe8d3;
+  text-decoration: none;
+}
+.gl-footer__links a:hover { text-decoration: underline; }
+
+.gl-footer__disclaimer {
+  font-size: 11px;
+  margin-top: 16px;
+  color: var(--subtle, #9fb3c8);
+}
+
+.gl-footer__copyright {
+  font-size: 10px;
+  color: var(--subtle, #9fb3c8);
+}

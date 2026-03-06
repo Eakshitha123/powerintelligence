@@ -1,0 +1,27 @@
+{
+  "outages": [
+    {"id": "OUT-1001", "asset_type": "DT", "asset_id": "DT-011-B", "start": "2025-12-11T10:20:00+05:30", "end": "2025-12-11T14:35:00+05:30", "cause": "Overload", "consumers_affected": 520, "center_lat": 12.9555, "center_lng": 77.6284, "duration_hours": 4.25, "severity": 0.8},
+    {"id": "OUT-1002", "asset_type": "DT", "asset_id": "DT-011-D", "start": "2025-12-21T19:05:00+05:30", "end": "2025-12-21T21:30:00+05:30", "cause": "Loose connection", "consumers_affected": 210, "center_lat": 12.9467, "center_lng": 77.6210, "duration_hours": 2.42, "severity": 0.5},
+    {"id": "OUT-1003", "asset_type": "DT", "asset_id": "DT-011-B", "start": "2026-01-02T15:10:00+05:30", "end": "2026-01-02T18:45:00+05:30", "cause": "Tree contact", "consumers_affected": 480, "center_lat": 12.9555, "center_lng": 77.6284, "duration_hours": 3.58, "severity": 0.75},
+    {"id": "OUT-1004", "asset_type": "Feeder", "asset_id": "FD-BLR-011", "start": "2026-01-15T22:30:00+05:30", "end": "2026-01-16T00:15:00+05:30", "cause": "Station maintenance", "consumers_affected": 7900, "center_lat": 12.95, "center_lng": 77.62, "duration_hours": 1.75, "severity": 1.0}
+  ],
+  "maintenance_logs": [
+    {"id": "MT-7001", "asset_type": "DT", "asset_id": "DT-011-A", "date": "2024-08-20", "activity": "Oil top-up and bushing check", "notes": "OK"},
+    {"id": "MT-7002", "asset_type": "DT", "asset_id": "DT-011-B", "date": "2023-12-10", "activity": "Tap changer inspection", "notes": "Wear observed"},
+    {"id": "MT-7003", "asset_type": "DT", "asset_id": "DT-011-C", "date": "2025-05-17", "activity": "Full PMC and oil analysis", "notes": "Good condition"},
+    {"id": "MT-7004", "asset_type": "DT", "asset_id": "DT-011-D", "date": "2022-09-02", "activity": "Routine maintenance", "notes": "Connections tightened"}
+  ],
+  "work_orders": [
+    {"wo_id": "WO-9001", "dt_id": "DT-011-B", "status": "OPEN", "assigned_to": "DTCoM-Beta", "priority": 92, "due": "2026-03-02", "actions": ["Thermal imaging", "Load balancing", "Replace lugs"]},
+    {"wo_id": "WO-9002", "dt_id": "DT-011-D", "status": "OPEN", "assigned_to": "Field-Team-1", "priority": 78, "due": "2026-03-03", "actions": ["Tighten connections", "Fuse check"]},
+    {"wo_id": "WO-9003", "dt_id": "DT-011-A", "status": "CLOSED", "assigned_to": "DTCoM-Beta", "priority": 65, "due": "2026-02-10", "actions": ["Oil level check"]},
+    {"wo_id": "WO-9004", "dt_id": "DT-011-C", "status": "OPEN", "assigned_to": "Field-Team-1", "priority": 45, "due": "2026-03-10", "actions": ["Visual inspection", "Temperature check"]}
+  ],
+  "routes": [
+    {"route_id": "R-001", "stops": [
+      {"dt_id": "DT-011-B", "lat": 12.9555, "lng": 77.6284},
+      {"dt_id": "DT-011-D", "lat": 12.9467, "lng": 77.6210},
+      {"dt_id": "DT-011-A", "lat": 12.9492, "lng": 77.6241}
+    ], "distance_km": 4.6, "eta_min": 38}
+  ]
+}
