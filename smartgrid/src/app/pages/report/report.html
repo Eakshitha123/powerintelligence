@@ -13,7 +13,7 @@
       <button 
         class="btn btn-primary" 
         (click)="generateReport(card.type)" 
-        [disabled]="generatingType !== null"
+        [disabled]="isGenerating(card.type)"
         style="width: 100%;">
         {{ isGenerating(card.type) ? 'Generating...' : 'Generate PDF' }}
       </button>
