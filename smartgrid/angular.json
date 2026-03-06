@@ -19,22 +19,6 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-<<<<<<< HEAD
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
-              }
-            ],
-            "styles": [
-              "src/material-theme.scss",
-              "src/styles.css"
-=======
            
 "assets": [
   "src/favicon.ico",
@@ -45,15 +29,14 @@
     "output": "/"
   }
 ],
-
+ 
             "styles": [
               "src/styles.css",
               "node_modules/leaflet/dist/leaflet.css",
-              
+             
                "src/assets/css/tokens.css",
               "src/assets/css/app.css"
-
->>>>>>> 8d706283e282da08c6bbf3fc5526e926128e324b
+ 
             ]
           },
           "configurations": {

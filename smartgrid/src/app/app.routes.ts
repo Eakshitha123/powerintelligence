@@ -13,18 +13,12 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   // Temporary placeholders so navigation works:
-<<<<<<< HEAD
-  // { path: 'map', component: MapComponent },
-   { path: 'planner', component: PlannerComponent },
-  // { path: 'feeder', component: FeederComponent },
-=======
   { path: 'map', component: MapsComponent },
   // { path: 'planner', component: PlannerComponent },
    { path: 'feeder', component: FeederComponent },
->>>>>>> 8d706283e282da08c6bbf3fc5526e926128e324b
   // { path: 'consumer', component: ConsumerComponent },
   { path: 'report', component: ReportComponent },
-
+  { path: 'planner', component: PlannerComponent },
   { path: '**', redirectTo: 'login' },
 ];
 
