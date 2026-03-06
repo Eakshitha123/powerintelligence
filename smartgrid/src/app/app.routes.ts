@@ -2,6 +2,7 @@
 // src/app/app.routes.ts
 import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login';
+import { PlannerComponent } from './pages/planner/planner.component';
 // If you have placeholders for the other pages, import them too:
 // import { MapComponent } from './pages/map/map.component'; etc.
 
@@ -11,7 +12,7 @@ export const routes: Routes = [
 
   // Temporary placeholders so navigation works:
   // { path: 'map', component: MapComponent },
-  // { path: 'planner', component: PlannerComponent },
+   { path: 'planner', component: PlannerComponent },
   // { path: 'feeder', component: FeederComponent },
   // { path: 'consumer', component: ConsumerComponent },
 
