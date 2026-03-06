@@ -1,0 +1,59 @@
+<div class="page-layout">
+  <div class="page-header">
+    <h1 class="page-title">Audit-Ready Report Generation</h1>
+    <p class="page-subtitle">Export risk summaries, NILM insights, and work plans as PDF</p>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card text-center" *ngFor="let card of reportCards">
+      <h3 style="margin-bottom: var(--sp-lg);">{{ card.title }}</h3>
+      <p style="margin-bottom: var(--sp-lg); color: var(--subtle);">
+        {{ card.description }}
+      </p>
+      <button 
+        class="btn btn-primary" 
+        (click)="generateReport(card.type)" 
+        [disabled]="generatingType !== null"
+        style="width: 100%;">
+        {{ isGenerating(card.type) ? 'Generating...' : 'Generate PDF' }}
+      </button>
+    </div>
+  </div>
+
+  <div class="card mt-lg">
+    <h3>Recent Reports</h3>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Report Type</th>
+          <th>Generated</th>
+          <th>File Size</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="getRecentReports().length > 0; else noReports">
+          <tr *ngFor="let report of getRecentReports()">
+            <td>{{ report.type }}</td>
+            <td>{{ formatDateTime(report.timestamp) }}</td>
+            <td>{{ report.size || '—' }}</td>
+            <td>
+              <a href="#" (click)="downloadReport(report); $event.preventDefault()">Download</a>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-template #noReports>
+          <tr>
+            <td colspan="4" style="text-align: center; color: var(--subtle);">
+              No reports generated yet
+            </td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="disclaimer mt-lg">
+    <strong>Disclaimer:</strong> All risk scores and recommendations provided in this report are probability-based and do not guarantee failure predictions or detect every theft instance. Use with professional engineering judgment and field verification.
+  </div>
+</div>

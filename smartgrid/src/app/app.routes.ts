@@ -4,7 +4,8 @@ import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login';
 // If you have placeholders for the other pages, import them too:
 import { MapsComponent } from './pages/maps/maps';
-import { FeederComponent } from './pages/feeder/feeder'; 
+import { FeederComponent } from './pages/feeder/feeder';
+import { ReportComponent } from './pages/report/report'; 
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   // { path: 'planner', component: PlannerComponent },
    { path: 'feeder', component: FeederComponent },
   // { path: 'consumer', component: ConsumerComponent },
+  { path: 'report', component: ReportComponent },
 
   { path: '**', redirectTo: 'login' },
 ];
