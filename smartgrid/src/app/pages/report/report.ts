@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 interface ReportHistory {
   type: string;
@@ -17,13 +18,19 @@ interface ReportCard {
 @Component({
   selector: 'app-report',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './report.html',
   styleUrls: ['./report.css'],
 })
-export class ReportComponent implements OnInit {
+export class ReportComponent implements OnInit, OnDestroy {
   reportHistory: ReportHistory[] = [];
   generatingType: string | null = null;
+  
+  // Auto-refresh properties
+  isAutoRefreshEnabled = false;
+  autoRefreshInterval = 5; // seconds
+  private refreshIntervalId: any;
+  lastRefreshTime: string = 'Never';
 
   reportCards: ReportCard[] = [
     {
@@ -122,14 +129,15 @@ export class ReportComponent implements OnInit {
     toast.textContent = message;
     toast.style.cssText = `
       position: fixed;
-      top: 20px;
+      top: 550px;
       right: 20px;
       padding: 12px 24px;
       background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
       color: white;
+      text-align: left;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      z-index: 9999;
+      z-index: 10px;
       animation: slideIn 0.3s ease-out;
     `;
     
@@ -147,9 +155,53 @@ export class ReportComponent implements OnInit {
 
   getRecentReports(): ReportHistory[] {
     return this.reportHistory.slice(-5).reverse();
+  }
 
-    isGenerating(type: string): boolean {
-      return this.generatingType === type;
+  isGenerating(type: string): boolean {
+    return this.generatingType === type;
+  }
+
+  toggleAutoRefresh(): void {
+    this.isAutoRefreshEnabled = !this.isAutoRefreshEnabled;
+    
+    if (this.isAutoRefreshEnabled) {
+      this.startAutoRefresh();
+      this.showToast('Auto-refresh enabled', 'success');
+    } else {
+      this.stopAutoRefresh();
+      this.showToast('Auto-refresh disabled', 'info');
     }
+  }
+
+  startAutoRefresh(): void {
+    // Clear any existing interval
+    if (this.refreshIntervalId) {
+      clearInterval(this.refreshIntervalId);
+    }
+    
+    // Set up new interval
+    this.refreshIntervalId = setInterval(() => {
+      this.loadReportHistory();
+      this.lastRefreshTime = new Date().toLocaleTimeString();
+    }, this.autoRefreshInterval * 1000);
+  }
+
+  stopAutoRefresh(): void {
+    if (this.refreshIntervalId) {
+      clearInterval(this.refreshIntervalId);
+      this.refreshIntervalId = null;
+    }
+  }
+
+  updateRefreshInterval(): void {
+    if (this.isAutoRefreshEnabled) {
+      this.stopAutoRefresh();
+      this.startAutoRefresh();
+      this.showToast(`Refresh interval updated to ${this.autoRefreshInterval}s`, 'info');
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoRefresh();
   }
 }

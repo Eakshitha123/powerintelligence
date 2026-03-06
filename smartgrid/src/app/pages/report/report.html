@@ -21,7 +21,32 @@
   </div>
 
   <div class="card mt-lg">
-    <h3>Recent Reports</h3>
+    <div class="report-header">
+      <h3>Recent Reports</h3>
+      <div class="refresh-controls">
+        <label class="refresh-toggle">
+          <input 
+            type="checkbox" 
+            [checked]="isAutoRefreshEnabled" 
+            (change)="toggleAutoRefresh()"
+            class="toggle-checkbox">
+          <span class="toggle-label">Auto-Refresh</span>
+        </label>
+        
+        <div class="interval-control" *ngIf="isAutoRefreshEnabled">
+          <label for="refreshInterval" class="interval-label">Interval (seconds):</label>
+          <input 
+            id="refreshInterval"
+            type="number" 
+            min="1" 
+            max="60" 
+            [(ngModel)]="autoRefreshInterval"
+            (change)="updateRefreshInterval()"
+            class="interval-input">
+          <span class="last-refresh">Last refresh: {{ lastRefreshTime }}</span>
+        </div>
+      </div>
+    </div>
     <table class="data-table">
       <thead>
         <tr>
