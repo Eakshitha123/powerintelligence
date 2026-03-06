@@ -1,0 +1,10 @@
+[
+  {"period": "2025-01", "dt_id": "DT-011-A", "peak_kW": 245, "avg_kW": 128, "outage_count": 1, "outage_hours": 1.3, "cause_code": "TREE"},
+  {"period": "2025-01", "dt_id": "DT-011-B", "peak_kW": 392, "avg_kW": 211, "outage_count": 3, "outage_hours": 4.2, "cause_code": "OL"},
+  {"period": "2025-01", "dt_id": "DT-011-C", "peak_kW": 151, "avg_kW": 89, "outage_count": 0, "outage_hours": 0.0, "cause_code": ""},
+  {"period": "2025-01", "dt_id": "DT-011-D", "peak_kW": 105, "avg_kW": 66, "outage_count": 2, "outage_hours": 2.5, "cause_code": "CONN"},
+  {"period": "2025-02", "dt_id": "DT-011-A", "peak_kW": 252, "avg_kW": 135, "outage_count": 0, "outage_hours": 0.0, "cause_code": ""},
+  {"period": "2025-02", "dt_id": "DT-011-B", "peak_kW": 410, "avg_kW": 220, "outage_count": 2, "outage_hours": 3.1, "cause_code": "OL"},
+  {"period": "2025-02", "dt_id": "DT-011-C", "peak_kW": 158, "avg_kW": 92, "outage_count": 1, "outage_hours": 0.8, "cause_code": "TREE"},
+  {"period": "2025-02", "dt_id": "DT-011-D", "peak_kW": 98, "avg_kW": 62, "outage_count": 0, "outage_hours": 0.0, "cause_code": ""}
+]

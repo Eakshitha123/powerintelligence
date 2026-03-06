@@ -1,0 +1,6 @@
+[
+  {"week_start": "2026-02-02", "dt_id": "DT-011-A", "homes_participating": 72, "night_baseload_kW_p95": 38.2, "left_on_events_per_home_p50": 1.4, "ac_duty_cycle_anom_rate": 0.11, "phase_imbalance_proxy": 0.21},
+  {"week_start": "2026-02-02", "dt_id": "DT-011-B", "homes_participating": 95, "night_baseload_kW_p95": 61.0, "left_on_events_per_home_p50": 2.1, "ac_duty_cycle_anom_rate": 0.19, "phase_imbalance_proxy": 0.36},
+  {"week_start": "2026-02-02", "dt_id": "DT-011-C", "homes_participating": 41, "night_baseload_kW_p95": 18.3, "left_on_events_per_home_p50": 0.9, "ac_duty_cycle_anom_rate": 0.07, "phase_imbalance_proxy": 0.12},
+  {"week_start": "2026-02-02", "dt_id": "DT-011-D", "homes_participating": 28, "night_baseload_kW_p95": 14.6, "left_on_events_per_home_p50": 1.1, "ac_duty_cycle_anom_rate": 0.05, "phase_imbalance_proxy": 0.18}
+]

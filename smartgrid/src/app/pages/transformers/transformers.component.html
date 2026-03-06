@@ -1,0 +1,108 @@
+<div class="page-layout">
+  <div class="page-header">
+    <h1 class="page-title">DT Failure Risk Ranking</h1>
+    <p class="page-subtitle">
+      Transformers prioritized by risk, maintenance windows, and operational health
+    </p>
+  </div>
+
+  <div class="action-row">
+    <button class="btn btn-secondary" (click)="exportCSV()">Export CSV</button>
+    <button class="btn btn-secondary" (click)="exportPDF()">Export PDF</button>
+  </div>
+
+  <div class="card" id="dt-export-card">
+    <h3>DT Risk Ranking</h3>
+
+    <!-- Loader / Empty states -->
+    <div *ngIf="isLoading" class="loading-state">Loading transformers…</div>
+    <div *ngIf="!isLoading && !rows.length" class="loading-state">No transformers found.</div>
+
+    <!-- Table only when data is ready -->
+    <table class="data-table" *ngIf="!isLoading && rows.length">
+      <thead>
+        <tr>
+          <th>DT ID</th>
+          <th>Risk Score</th>
+          <th>kVA</th>
+          <th>Outages (30d)</th>
+          <th>Last Maintenance</th>
+          <th>Consumers</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="dt-table">
+        <tr *ngFor="let dt of rows">
+          <td><strong>{{ dt.dt_id }}</strong></td>
+          <td>
+            <span class="score-pill" [ngClass]="riskClass(dt.risk)">
+              {{ dt.risk | number:'1.0-0' }}
+            </span>
+          </td>
+          <td>{{ dt.kva_rating ?? '—' }}</td>
+          <td>{{ dt.outages30d }}</td>
+          <td>{{ formatDate(dt.last_maintenance_date) }}</td>
+          <td>{{ dt.consumers ?? '—' }}</td>
+          <td>
+            <button class="btn btn-small" (click)="openDetail(dt)">Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Detail Modal -->
+  <div id="detail-modal" class="modal-overlay" (click)="onOverlayClick($event)" style="display:none;">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>{{ selectedDT?.dt_id || 'DT Details' }}</h2>
+        <button class="close-btn" (click)="closeDetail()">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="kpi-grid">
+          <div>
+            <small>Risk Score</small>
+            <div class="score-pill" [ngClass]="riskClass(selectedDT?.risk)" style="margin-top:6px;">
+              {{ selectedDT?.risk | number:'1.0-0' }}
+            </div>
+          </div>
+          <div>
+            <small>kVA Rating</small>
+            <div class="kpi-value">{{ selectedDT?.kva_rating ?? '—' }}</div>
+          </div>
+        </div>
+
+        <div class="explainability-section" *ngIf="selectedDT">
+          <div class="explainability-title">Top Risk Drivers</div>
+          <div class="chips">
+            <div class="chip primary" *ngFor="let f of selectedDT?.topFactors">{{ f }}</div>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-title">Load/Capacity Over Time</div>
+          <canvas id="lc-chart"></canvas>
+        </div>
+
+        <div class="chart-container">
+          <div class="chart-title">Outages (Last 30 Days)</div>
+          <canvas id="outage-chart"></canvas>
+        </div>
+
+        <div class="maint-log">
+          <h4>Maintenance Log</h4>
+          <div class="log-muted">Link your maintenance data source to populate this section.</div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeDetail()">Close</button>
+        <button class="btn btn-primary" (click)="exportPDF()">Download PDF Report</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" *ngIf="toast.visible" [ngClass]="toast.type">{{ toast.message }}</div>
+</div>
