@@ -1,0 +1,116 @@
+<div class="page-layout" role="main" aria-labelledby="help-page-title">
+  <div class="page-header">
+    <h1 class="page-title" id="help-page-title">Help & Frequently Asked Questions</h1>
+    <p class="page-subtitle">Glossary, usage guide, and common questions</p>
+  </div>
+ 
+  <!-- Glossary -->
+  <div class="card" aria-labelledby="glossary-title">
+    <h3 id="glossary-title">📖 Glossary</h3>
+ 
+    <div class="accordion" role="tablist">
+      <div
+        class="accordion-item"
+        *ngFor="let item of glossary; let i = index; trackBy: trackByIndex"
+        [class.open]="openGlossaryIndex === i"
+      >
+        <button
+          class="accordion-header"
+          role="tab"
+          [attr.aria-expanded]="openGlossaryIndex === i"
+          [attr.aria-controls]="'glossary-panel-' + i"
+          (click)="toggleGlossary(i)"
+          type="button"
+        >
+          <span>{{ item.term }}</span>
+          <span class="accordion-icon">▾</span>
+        </button>
+ 
+        <div
+          class="accordion-body"
+          role="region"
+          [id]="'glossary-panel-' + i"
+          [attr.aria-labelledby]="'glossary-tab-' + i"
+        >
+          <p [innerHTML]="item.description"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- FAQ -->
+  <div class="card mt-lg" aria-labelledby="faq-title">
+    <h3 id="faq-title">❓ Frequently Asked Questions</h3>
+ 
+    <div class="accordion" role="tablist">
+      <div
+        class="accordion-item"
+        *ngFor="let q of faqs; let i = index; trackBy: trackByIndex"
+        [class.open]="openFaqIndex === i"
+      >
+        <button
+          class="accordion-header"
+          role="tab"
+          [attr.aria-expanded]="openFaqIndex === i"
+          [attr.aria-controls]="'faq-panel-' + i"
+          (click)="toggleFaq(i)"
+          type="button"
+        >
+          <span>{{ q.question }}</span>
+          <span class="accordion-icon">▾</span>
+        </button>
+ 
+        <div
+          class="accordion-body"
+          role="region"
+          [id]="'faq-panel-' + i"
+          [attr.aria-labelledby]="'faq-tab-' + i"
+        >
+          <div class="accordion-content" [innerHTML]="q.answer"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Quick Start -->
+  <div class="card mt-lg" aria-labelledby="quick-start-title">
+    <h3 id="quick-start-title">📋 Quick Start</h3>
+    <ol style="line-height: 2;">
+      <li><strong>Sign In:</strong> Select your role on the landing page.</li>
+      <li>
+        <strong>View Map:</strong> Navigate to
+        <a href="/map">Map</a>
+        to see feeder, transformers, households, and outages.
+      </li>
+      <li>
+        <strong>Analyze Risk:</strong> Browse
+        <a href="/feeder">Feeder</a>
+        and
+        <a href="/transformers">Transformers</a>
+        dashboards.
+      </li>
+      <li>
+        <strong>Plan Work:</strong> Use
+        <a href="/planner">Planner</a>
+        to prioritize and route maintenance.
+      </li>
+      <li>
+        <strong>Generate Reports:</strong> Export PDFs from
+        <a href="/reports">Reports</a>.
+      </li>
+      <li>
+        <strong>Consumer (if logged in as Consumer):</strong> View appliance insights and bills on
+        <a href="/consumer">My Home</a>.
+      </li>
+    </ol>
+  </div>
+ 
+  <!-- Links -->
+  <div class="card mt-lg" aria-labelledby="links-title">
+    <h3 id="links-title">🔗 Links</h3>
+    <p>
+      <a href="/legal/privacy">Privacy Policy</a> |
+      <a href="/legal/terms">Terms of Service</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,253 @@
+/* --- Font: modern, readable, matches screenshots --- */
+:host {
+  --font-stack: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+                Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans",
+                "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+
+  /* Accent & ramp tuned to screenshots (teal / mint) */
+  --hlp-accent: #22d3c5;          /* primary teal for links & accents */
+  --hlp-accent-600: #14b8a6;      /* deeper teal on hover */
+  --hlp-accent-300: #74f0e8;      /* soft glow */
+
+  /* Panels / surfaces (navy-dark look) */
+  --hlp-surface: #0f1722;         /* page backdrop tint */
+  --hlp-card-0: #0f1219;          /* deepest */
+  --hlp-card-1: #121826;          /* base panel */
+  --hlp-card-2: #1a2332;          /* hover stripe */
+  --hlp-card-grad-top: #101826;
+  --hlp-card-grad-bot: #0f141e;
+
+  /* Lines / shadows */
+  --hlp-line: #233044;            /* soft line */
+  --hlp-line-strong: #2d3a51;
+  --hlp-shadow: 0 6px 18px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255,255,255,0.025);
+
+  /* Text */
+  --hlp-text: #E6EEF7;
+  --hlp-text-muted: #9FB3C8;
+  --hlp-text-subtle: #7b8ba0;
+  --hlp-heading: #dff8f6;
+
+  /* Radius & transitions */
+  --hlp-radius: 14px;
+  --hlp-radius-sm: 10px;
+  --hlp-transition: 200ms cubic-bezier(.2,.8,.2,1);
+}
+
+:host,
+:host ::ng-deep * {
+  font-family: var(--font-stack);
+}
+
+/* --- Page Layout --- */
+.page-layout {
+  min-height: calc(100vh - 200px);
+  padding: 28px 28px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: linear-gradient(
+    180deg,
+    rgba(9, 12, 18, 0.0) 0%,
+    rgba(9, 12, 18, 0.25) 100%
+  );
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.page-title {
+  margin: 0 0 6px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  color: var(--hlp-heading);
+  background: linear-gradient(135deg, var(--hlp-accent) 0%, #7dd3fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.page-subtitle {
+  color: var(--hlp-text-muted);
+}
+
+/* --- Cards --- */
+.card {
+  background: linear-gradient(
+      180deg,
+      rgba(255,255,255,0.02) 0%,
+      rgba(255,255,255,0) 100%
+    ),
+    linear-gradient(180deg, var(--hlp-card-grad-top), var(--hlp-card-grad-bot));
+  border: 1px solid var(--hlp-line);
+  border-radius: var(--hlp-radius);
+  padding: 22px 22px;
+  box-shadow: var(--hlp-shadow);
+}
+
+.card + .card { margin-top: 18px; }
+
+/* Section headings inside cards */
+.card > h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--hlp-heading);
+  margin: 0 0 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* --- Links (teal accent like screenshots) --- */
+.card a,
+.card a:visited {
+  color: var(--hlp-accent);
+  text-decoration: none;
+  transition: color var(--hlp-transition), text-shadow var(--hlp-transition);
+}
+.card a:hover {
+  color: var(--hlp-accent-300);
+  text-shadow: 0 0 10px rgba(34, 211, 197, 0.35);
+}
+
+/* --- Ordered list tweaks (Quick Start) --- */
+.card ol {
+  color: var(--hlp-text);
+}
+.card ol strong {
+  color: var(--hlp-text);
+}
+
+/* --- Accordion --- */
+.accordion { margin-bottom: 8px; }
+
+.accordion-item {
+  background: linear-gradient(180deg, #151d2a 0%, #121a27 100%);
+  border: 1px solid rgba(70, 90, 120, 0.25);
+  border-radius: var(--hlp-radius-sm);
+  overflow: hidden;
+  transition: border-color var(--hlp-transition), box-shadow var(--hlp-transition), transform var(--hlp-transition);
+  will-change: transform;
+}
+
+.accordion-item + .accordion-item { margin-top: 10px; }
+
+.accordion-item:hover {
+  border-color: rgba(114, 233, 220, 0.35);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.02), 0 0 0 3px rgba(34, 211, 197, 0.06) inset;
+}
+
+.accordion-item.open {
+  border-color: rgba(114, 233, 220, 0.45);
+  box-shadow: 0 0 0 1px rgba(34, 211, 197, 0.16) inset, 0 14px 30px rgba(0,0,0,0.35);
+  transform: translateZ(0);
+}
+
+/* Header button */
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 100%),
+    radial-gradient(120% 80% at 50% -20%, rgba(34, 211, 197, 0.05), transparent 60%);
+  border: 0;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--hlp-text);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  transition: background var(--hlp-transition), color var(--hlp-transition);
+}
+
+.accordion-header:hover {
+  color: #e9fffb;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.01) 100%),
+    radial-gradient(120% 80% at 50% -20%, rgba(34, 211, 197, 0.08), transparent 60%);
+}
+
+/* Caret icon */
+.accordion-icon {
+  color: var(--hlp-accent);
+  font-size: 18px;
+  line-height: 1;
+  transition: transform var(--hlp-transition), color var(--hlp-transition), text-shadow var(--hlp-transition);
+  text-shadow: 0 0 0 transparent;
+}
+.accordion-header:hover .accordion-icon {
+  color: var(--hlp-accent-300);
+  text-shadow: 0 0 8px rgba(34, 211, 197, 0.4);
+}
+.accordion-item.open .accordion-icon {
+  transform: rotate(180deg);
+}
+
+/* Body */
+.accordion-body {
+  display: none;
+  padding: 0 18px 16px;
+  background: linear-gradient(180deg, rgba(15, 22, 33, 0.4) 0%, rgba(15, 22, 33, 0) 100%);
+  border-top: 1px dashed rgba(114, 233, 220, 0.18);
+}
+
+.accordion-item.open .accordion-body {
+  display: block;
+}
+
+.accordion-content,
+.accordion-body p {
+  color: var(--hlp-text);
+  line-height: 1.7;
+}
+
+.accordion-body p strong { color: var(--hlp-heading); }
+.accordion-body a { color: var(--hlp-accent); }
+
+/* --- Section-specific icon tints (emoji headers) --- */
+#glossary-title::before,
+#faq-title::before,
+#quick-start-title::before,
+#links-title::before {
+  /* subtle left stripe glow */
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+}
+
+/* --- Page title spacing mimic from screenshots --- */
+.page-title { font-size: 30px; }
+.page-subtitle { font-size: 15px; }
+
+/* --- Fine-tune the Links card look from screenshots --- */
+#links-title {
+  margin-bottom: 6px;
+}
+.card p {
+  color: var(--hlp-text-muted);
+  margin: 10px 0 0;
+}
+
+/* --- Subtle focus rings --- */
+.accordion-header:focus-visible,
+.card a:focus-visible {
+  outline: 2px solid rgba(34, 211, 197, 0.55);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .page-layout { padding: 20px 16px 32px; }
+  .page-title { font-size: 24px; }
+  .accordion-header { padding: 14px 14px; }
+  .accordion-body { padding: 0 14px 14px; }
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
