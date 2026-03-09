@@ -8,7 +8,7 @@ import { MapsComponent } from './pages/maps/maps';
 import { FeederComponent } from './pages/feeder/feeder';
 import { ReportComponent } from './pages/report/report'; 
 import { HelpComponent } from './pages/help/help';
-
+import { ConsumerComponent } from './pages/consumer/consumer.component';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'map', component: MapsComponent },
   // { path: 'planner', component: PlannerComponent },
    { path: 'feeder', component: FeederComponent },
-  // { path: 'consumer', component: ConsumerComponent },
+  { path: 'consumer', component: ConsumerComponent },
   { path: 'report', component: ReportComponent },
   { path: 'planner', component: PlannerComponent },
   { path: 'help', component: HelpComponent },
