@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
     { label: 'Feeder',        route: '/feeder' },
     { label: 'Transformers',  route: '/transformers' },
     { label: 'Planner',       route: '/planner' },
-    { label: 'Reports',       route: '/reports' },
+    { label: 'Reports',       route: '/report' },
     { label: 'Consumer',      route: '/consumer' },
     { label: 'Help',          route: '/help' },
   ];
