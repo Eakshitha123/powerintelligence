@@ -1,0 +1,302 @@
+<!-- Success Screen -->
+<div
+  *ngIf="success"
+  class="page-shell"
+>
+  <div class="bg-effects">
+    <div class="orb orb-success-left"></div>
+    <div class="orb orb-success-right"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="card success-card">
+      <div class="success-icon-wrap">
+        <svg class="success-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+
+      <h2 class="success-title">Registration Successful!</h2>
+      <p class="success-text">Your account has been created successfully.</p>
+
+      <div class="success-info" *ngIf="selectedCategoryInfo">
+        <p>
+          <span class="muted">Category:</span>
+          <span class="strong">
+            {{ selectedCategoryInfo.emoji }} {{ selectedCategoryInfo.label }}
+          </span>
+        </p>
+        <p>
+          <span class="muted">System #:</span>
+          <span class="mono cyan">{{ systemNumber?.value }}</span>
+        </p>
+      </div>
+
+      <button type="button" class="primary-btn" (click)="onGoToLogin()">
+        Proceed to Login
+        <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Register Form -->
+<div
+  *ngIf="!success"
+  class="page-shell"
+>
+  <div class="bg-effects">
+    <div class="orb orb-left"></div>
+    <div class="orb orb-right"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="container container-lg">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-badge">
+        <svg class="logo-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+        </svg>
+      </div>
+      <h1>Create Your Account</h1>
+      <p>Register to access the PowerGrid system</p>
+    </div>
+
+    <!-- Progress -->
+    <div class="steps">
+      <div class="step-pill" [class.step-active]="step === 1" [class.step-complete]="step === 2">
+        <ng-container *ngIf="step === 2; else stepOneNumber">
+          <svg class="step-check" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+          </svg>
+        </ng-container>
+        <ng-template #stepOneNumber>
+          <span class="step-number active-number">1</span>
+        </ng-template>
+        Personal Info
+      </div>
+
+      <div class="step-line"></div>
+
+      <div class="step-pill" [class.step-active]="step === 2" [class.step-inactive]="step !== 2">
+        <span class="step-number">2</span>
+        System Details
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="card">
+      <div *ngIf="error" class="alert">
+        <svg class="alert-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+        </svg>
+        <span>{{ error }}</span>
+      </div>
+
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <!-- Step 1 -->
+        <div *ngIf="step === 1" class="form-section">
+          <div class="form-group">
+            <label>Full Name</label>
+            <div class="input-wrap">
+              <div class="input-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                formControlName="name"
+                placeholder="Enter your full name"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <div class="input-wrap">
+              <div class="input-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+              </div>
+              <input
+                type="email"
+                formControlName="email"
+                placeholder="name@government.gov"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Password</label>
+            <div class="input-wrap">
+              <div class="input-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+              </div>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="Min. 6 characters"
+              />
+              <button type="button" class="toggle-password" (click)="togglePassword()">
+                <svg *ngIf="showPassword" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88" />
+                </svg>
+                <svg *ngIf="!showPassword" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </button>
+            </div>
+
+            <div *ngIf="passwordValue" class="strength-bars">
+              <div *ngFor="let i of [1, 2, 3, 4]" class="strength-bar" [ngClass]="passwordStrengthClass(i)"></div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Confirm Password</label>
+            <div class="input-wrap" [class.border-danger]="passwordsDoNotMatch()" [class.border-success]="passwordsMatch()">
+              <div class="input-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="confirmPassword"
+                placeholder="Re-enter password"
+              />
+              <div *ngIf="passwordsMatch()" class="status-icon success">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="primary-btn" (click)="handleNext()">
+            Continue
+            <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Step 2 -->
+        <div *ngIf="step === 2" class="form-section">
+          <div class="form-group">
+            <label>Unique System Number</label>
+            <div class="input-wrap">
+              <div class="input-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                formControlName="systemNumber"
+                placeholder="e.g., PG-2025-001234"
+                class="mono-input"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Category / Role</label>
+            <div class="category-grid">
+              <button
+                *ngFor="let cat of categories"
+                type="button"
+                class="category-card"
+                [class.selected]="category?.value === cat"
+                (click)="selectCategory(cat)"
+              >
+                <span class="category-emoji">{{ CATEGORY_INFO[cat].emoji }}</span>
+
+                <div class="category-content">
+                  <p class="category-title">{{ CATEGORY_INFO[cat].label }}</p>
+                  <p class="category-description">{{ CATEGORY_INFO[cat].description }}</p>
+                </div>
+
+                <svg
+                  *ngIf="category?.value === cat"
+                  class="category-check"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Place / Location</label>
+            <div class="input-wrap">
+              <div class="input-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                formControlName="place"
+                placeholder="City, District or Substation"
+              />
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button type="button" class="secondary-btn" (click)="goBack()">
+              <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+              </svg>
+              Back
+            </button>
+
+            <button type="submit" class="primary-btn flex-grow" [disabled]="loading">
+              <ng-container *ngIf="loading; else submitText">
+                <svg class="btn-icon spin" viewBox="0 0 24 24" fill="none">
+                  <circle class="spinner-track" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="spinner-fill" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                </svg>
+                Registering...
+              </ng-container>
+
+              <ng-template #submitText>
+                Create Account
+                <svg class="btn-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </ng-template>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div class="footer">
+        <p>
+          Already have an account?
+          <button type="button" class="text-link" (click)="onGoToLogin()">
+            Sign in here
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <div class="security-note">
+      <p>🔒 Secured Government System • Authorized Personnel Only</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,210 @@
+/* login.component.css */
+:host {
+  --bg: #0b1020;
+  --card: #121936;
+  --card-2: #0f1630;
+  --text: #e8ecff;
+  --muted: #a6b0d6;
+  --primary: #5b8cff;
+  --primary-700: #3f6df1;
+  --danger: #ff6b6b;
+  --ring: 0 0 0 3px rgba(91, 140, 255, 0.35);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 10% 0%, #16214a 0%, transparent 70%),
+    radial-gradient(1200px 600px at 90% 0%, #1b2552 0%, transparent 70%), var(--bg);
+  min-height: 70vh;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  width: 100%;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  background: linear-gradient(180deg, var(--card), var(--card-2));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: 28px;
+  backdrop-filter: blur(6px);
+  position: relative;
+  z-index: 1;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  letter-spacing: 0.2px;
+}
+
+.field {
+  margin: 16px 0;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(168, 180, 220, 0.22);
+  background: rgba(10, 14, 30, 0.6);
+  color: var(--text);
+  outline: none;
+  transition: box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+input::placeholder {
+  color: #8f9ac7;
+}
+
+input:focus {
+  border-color: rgba(91, 140, 255, 0.6);
+  box-shadow: var(--ring);
+  background: rgba(10, 14, 30, 0.8);
+}
+
+input.invalid {
+  border-color: rgba(255, 107, 107, 0.7);
+}
+
+.help {
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin-top: 6px;
+  display: block;
+}
+
+.error {
+  color: var(--danger);
+  font-size: 0.82rem;
+  margin-top: 6px;
+}
+
+.banner {
+  padding: 10px 12px;
+  border: 1px solid rgba(255, 107, 107, 0.4);
+  background: rgba(255, 107, 107, 0.08);
+  border-radius: 10px;
+}
+
+.password-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrap input {
+  padding-right: 60px;
+}
+
+.toggle {
+  position: absolute;
+  right: 8px;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.toggle:hover {
+  color: var(--primary-700);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  margin: 16px 0;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.92rem;
+}
+
+.checkbox input[type="checkbox"] {
+  width: auto;
+  cursor: pointer;
+}
+
+.link {
+  color: var(--primary);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+button.primary {
+  width: 100%;
+  padding: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 160ms ease;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button.primary:hover:not(:disabled) {
+  background: var(--primary-700);
+}
+
+button.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fineprint {
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}

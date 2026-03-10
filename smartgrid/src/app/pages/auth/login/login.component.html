@@ -1,0 +1,82 @@
+<!-- login.component.html -->
+<section class="login-card" role="form" aria-labelledby="login-title">
+  <h1 id="login-title" class="title">Sign in</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+    <div class="field">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        inputmode="email"
+        autocomplete="email"
+        formControlName="email"
+        [class.invalid]="email?.touched && email?.invalid"
+        placeholder="you@example.com"
+        aria-describedby="email-help email-error"
+        [attr.aria-invalid]="email?.invalid && email?.touched"
+      />
+      <small id="email-help" class="help">Use your work or personal email.</small>
+      <div id="email-error" class="error" *ngIf="email?.touched && email?.invalid">
+        <span *ngIf="email?.errors?.['required']">Email is required.</span>
+        <span *ngIf="email?.errors?.['email']">Enter a valid email address.</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="password">Password</label>
+      <div class="password-wrap">
+        <input
+          id="password"
+          [type]="hidePassword() ? 'password' : 'text'"
+          autocomplete="current-password"
+          formControlName="password"
+          [class.invalid]="password?.touched && password?.invalid"
+          placeholder="••••••••"
+          aria-describedby="password-error"
+          [attr.aria-invalid]="password?.invalid && password?.touched"
+        />
+        <button
+          type="button"
+          class="toggle"
+          (click)="togglePassword()"
+          [attr.aria-label]="hidePassword() ? 'Show password' : 'Hide password'"
+        >
+          {{ hidePassword() ? 'Show' : 'Hide' }}
+        </button>
+      </div>
+      <div id="password-error" class="error" *ngIf="password?.touched && password?.invalid">
+        <span *ngIf="password?.errors?.['required']">Password is required.</span>
+        <span *ngIf="password?.errors?.['minlength']">Minimum 6 characters.</span>
+      </div>
+    </div>
+
+    <div class="row between">
+      <label class="checkbox">
+        <input type="checkbox" formControlName="remember" />
+        <span>Remember me</span>
+      </label>
+
+      <a class="link" href="#" (click)="$event.preventDefault()">Forgot password?</a>
+    </div>
+
+    <div class="error banner" *ngIf="authError() as err">{{ err }}</div>
+
+    <button
+      class="primary"
+      type="submit"
+      [disabled]="isSubmitting() || form.invalid"
+      [class.loading]="isSubmitting()"
+      [attr.aria-busy]="isSubmitting()"
+    >
+      <span class="spinner" *ngIf="isSubmitting()"></span>
+      <span>{{ isSubmitting() ? 'Signing in…' : 'Sign in' }}</span>
+    </button>
+  </form>
+
+  <p class="fineprint">
+    By continuing, you agree to our
+    <a href="#" class="link" (click)="$event.preventDefault()">Terms</a> and
+    <a href="#" class="link" (click)="$event.preventDefault()">Privacy Policy</a>.
+  </p>
+</section>

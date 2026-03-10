@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private auth = inject(AuthLegacyService);
 
   // Hide on landing & login (tweak if needed)
-  private hideOnRoutes = ['/', '/login'];
+  private hideOnRoutes = ['/', '/home', '/login', '/register'];
   private currentPath = signal<string>('/');
 
   private normalize(url: string): string {

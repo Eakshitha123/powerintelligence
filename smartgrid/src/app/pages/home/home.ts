@@ -20,7 +20,7 @@ interface RoleOption {
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })
-export class LoginComponent {
+export class HomeComponent {
   selectedRole: RoleKey | null = null;
   openFaqIndex: number | null = null;
 
@@ -68,4 +68,3 @@ export class LoginComponent {
     setTimeout(() => this.router.navigate([route]), 300);
   }
 }
-``
