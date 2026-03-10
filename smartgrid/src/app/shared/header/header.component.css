@@ -1,67 +1,132 @@
-:root {
-  --bar-bg: #111827;      /* distinct, opaque */
-  --bar-border: #1f2937;
-  --text: #ffffff;
-  --text-dim: #cfd6e0;
-  --accent: #60A5FA;
-
-  --r-8: 8px; --r-10: 10px;
-  --shadow: 0 8px 22px rgba(0,0,0,.35);
+:host {
+  --bar-bg: linear-gradient(180deg, #0b1324 0%, #0f1a2d 100%);
+  --bar-border: rgba(151, 173, 204, 0.18);
+  --text: #ecf3ff;
+  --text-dim: #aac0df;
+  --accent: #2dd4bf;
+  --accent-2: #60a5fa;
+  --active-bg: rgba(96, 165, 250, 0.2);
+  --hover-bg: rgba(151, 173, 204, 0.16);
+  --shadow: 0 10px 24px rgba(2, 6, 23, 0.45);
 }
 
 .topbar {
-  position: sticky; top: 0; z-index: 1200;
+  position: sticky;
+  top: 0;
+  z-index: 1200;
   background: var(--bar-bg);
   color: var(--text);
   border-bottom: 1px solid var(--bar-border);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 .inner {
-  max-width: 1280px; margin: 0 auto;
-  padding: 10px 14px;
-  display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
 }
 
-/* Brand */
-.brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; }
-.logo {
-  width: 28px; height: 28px; border-radius: var(--r-8);
-  display: grid; place-items: center; background: #0b1220; border: 2px solid #070d18;
-  font-weight: 900; color: #fff;
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
 }
-.title { font-weight: 800; letter-spacing: .3px; }
 
-/* Links */
-.links { justify-self: end; display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.logo-badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, rgba(45, 212, 191, 0.22) 0%, rgba(96, 165, 250, 0.2) 100%);
+  border: 1px solid rgba(45, 212, 191, 0.45);
+}
+
+.logo-icon {
+  width: 18px;
+  height: 18px;
+  color: #dbfbf5;
+}
+
+.title {
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  font-size: 1.02rem;
+}
+
+.links {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
 .link {
-  color: var(--text); text-decoration: none; font-weight: 700;
-  padding: 8px 10px; border-radius: var(--r-8); border: 1px solid transparent;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 0.92rem;
+  padding: 8px 11px;
+  border-radius: 9px;
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
-.link:hover  { background: #1f2937; border-color: var(--bar-border); }
-.link.active { background: #2b3a55; border-color: var(--bar-border); }
 
-/* Right zone */
-.right { display: inline-flex; align-items: center; gap: 10px; }
+.link:hover {
+  background: var(--hover-bg);
+  border-color: var(--bar-border);
+  transform: translateY(-1px);
+}
+
+.link.active {
+  background: var(--active-bg);
+  border-color: rgba(96, 165, 250, 0.45);
+}
+
+.right {
+  display: inline-flex;
+  align-items: center;
+}
+
 .role-chip {
-  background: #0b1220; color: var(--text-dim);
-  border: 1px solid var(--bar-border); border-radius: 999px;
-  padding: 6px 10px; font-size: 12px; font-weight: 700;
-}
-.dev-switch {
-  background: #0b1220; color: var(--text);
-  border: 1px solid var(--bar-border); border-radius: var(--r-8);
-  padding: 6px 8px;
-}
-
-/* Focus */
-.link:focus-visible, .brand:focus-visible, .role-chip:focus-visible, .dev-switch:focus-visible {
-  outline: 2px solid var(--accent); outline-offset: 2px;
+  background: rgba(8, 15, 30, 0.75);
+  color: var(--text-dim);
+  border: 1px solid var(--bar-border);
+  border-radius: 999px;
+  padding: 6px 11px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
-/* Responsive */
+.link:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
 @media (max-width: 720px) {
-  .inner { grid-template-columns: 1fr; gap: 8px; }
-  .links { justify-self: start; }
-  .right { justify-self: start; }
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+
+  .links,
+  .right {
+    justify-self: start;
+  }
+
+  .title {
+    font-size: 0.98rem;
+  }
 }

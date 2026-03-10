@@ -2,7 +2,7 @@ import { Component, computed, inject, OnDestroy, OnInit, signal } from '@angular
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs';
-import { AuthLegacyService, AppRole } from '../../core/auth-legacy.service';
+import { AuthLegacyService } from '../../core/auth-legacy.service';
 
 type NavItem = { label: string; route: string };
 
@@ -65,19 +65,4 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.navSub?.unsubscribe?.();
   }
-
-// DEV ONLY: quick role switch (remove in prod)
-devSetRole(role: AppRole) {
-  this.auth.signIn(role, 'dev');
-  location.reload();
-}
-
-// DEV ONLY: handle change event in TS (safe & typed)
-onRoleSelect(e: Event) {
-  const el = e.target as HTMLSelectElement | null;
-  if (!el) return;
-  const val = el.value as AppRole;
-  this.devSetRole(val); // you already have devSetRole(role: AppRole)
-}
-
 }

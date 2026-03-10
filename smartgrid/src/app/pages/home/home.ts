@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthLegacyService } from '../../core/auth-legacy.service';
 
 type RoleKey = 'Administrator' | 'DTCoM' | 'Field' | 'Viewer' | 'Consumer';
 
@@ -40,7 +41,10 @@ export class HomeComponent {
     { q: 'Is this a production system?', a: 'No, this is a demo with local/sample data only.' },
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private auth: AuthLegacyService
+  ) {}
 
   scrollTo(el: HTMLElement) {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -55,6 +59,9 @@ export class HomeComponent {
       alert('Please select a role');
       return;
     }
+
+    // Persist selected role for role-based navbar and route access.
+    this.auth.signIn(this.selectedRole);
 
     // Minimal local session (optional)
     const userId = `user-${this.selectedRole}-${Date.now()}`;
