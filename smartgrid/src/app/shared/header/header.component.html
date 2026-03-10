@@ -1,50 +1,37 @@
-<!-- Corner rectangle button (right-top). Hidden on landing/login. -->
-<button
-  *ngIf="!hideHeader()"
-  class="menu-btn"
-  type="button"
-  (click)="toggle()"
-  [attr.aria-expanded]="drawerOpen()"
-  aria-controls="app-drawer"
-  aria-label="Open menu">
-  <span class="btn-text">Menu</span>
-  <span class="btn-arrow" [class.open]="drawerOpen()" aria-hidden="true">›</span>
-</button>
-
-<!-- Backdrop -->
-<div
-  *ngIf="drawerOpen()"
-  class="backdrop"
-  (click)="close()"
-  aria-hidden="true">
-</div>
-
-<!-- Right drawer -->
-<aside
-  *ngIf="drawerOpen()"
-  id="app-drawer"
-  class="drawer"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Navigation menu">
-
-  <header class="drawer-header">
-    <div class="brand">
-      <span class="brand-logo" aria-hidden="true">⚡</span>
-      <span class="brand-title">Smartgrid</span>
-    </div>
-    <button class="close" (click)="close()" aria-label="Close menu">×</button>
-  </header>
-
-  <nav class="menu" role="navigation" aria-label="Primary">
-    <a
-      *ngFor="let it of navItems"
-      [routerLink]="it.route"
-      class="menu-link"
-      (click)="close()">
-      <span class="label">{{ it.label }}</span>
-      <span class="arrow" aria-hidden="true">›</span>
+<header *ngIf="!hideHeader()" class="topbar" role="navigation" aria-label="Primary">
+  <div class="inner">
+    <!-- Brand -->
+    <a class="brand" routerLink="/map" aria-label="Smartgrid Home">
+      <span class="logo" aria-hidden="true">⚡</span>
+      <span class="title">Smartgrid</span>
     </a>
-  </nav>
 
-</aside>
+    <!-- Role-aware links -->
+    <nav class="links">
+      <a
+        *ngFor="let it of visibleItems()"
+        [routerLink]="it.route"
+        routerLinkActive="active"
+        class="link">
+        {{ it.label }}
+      </a>
+    </nav>
+
+    <!-- Right: role chip + (dev-only) switcher -->
+    <!-- DEV-ONLY: Role switcher (safe) -->
+<!-- Right: role chip + (dev-only) switcher -->
+<div class="right">
+  <span class="role-chip">{{ roleBadge() }}</span>
+
+  <!-- DEV-ONLY: no TypeScript casts in template -->
+  <select class="dev-switch" (change)="onRoleSelect($event)">
+    <option selected disabled>Switch role…</option>
+    <option>Administrator</option>
+    <option>DTCoM</option>
+    <option>Field</option>
+    <option>Analyst</option>
+    <option>Consumer</option>
+  </select>
+</div>
+  </div>
+</header>
