@@ -9,6 +9,7 @@ import { FeederComponent } from './pages/feeder/feeder';
 import { ReportComponent } from './pages/report/report'; 
 import { HelpComponent } from './pages/help/help';
 import { ConsumerComponent } from './pages/consumer/consumer.component';
+import { TransformersComponent } from './pages/transformers/transformers.component';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'report', component: ReportComponent },
   { path: 'planner', component: PlannerComponent },
   { path: 'help', component: HelpComponent },
+  {path: 'transformers', component: TransformersComponent},
   { path: '**', redirectTo: 'login' },
 
 ];
