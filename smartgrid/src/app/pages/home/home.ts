@@ -17,8 +17,8 @@ interface RoleOption {
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './login.html',
-  styleUrls: ['./login.css'],
+  templateUrl: './home.html',
+  styleUrls: ['./home.css'],
 })
 export class LoginComponent {
   selectedRole: RoleKey | null = null;

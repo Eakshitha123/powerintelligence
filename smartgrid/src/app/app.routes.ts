@@ -1,7 +1,7 @@
 // src/app/app.routes.ts
 import { Routes } from '@angular/router';
 
-import { LoginComponent } from './pages/login/login';
+import { LoginComponent } from './pages/home/home';
 import { PlannerComponent } from './pages/planner/planner.component';
 // If you have placeholders for the other pages, import them too:
 import { MapsComponent } from './pages/maps/maps';
