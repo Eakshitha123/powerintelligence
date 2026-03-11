@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   // Order you want them to appear (text-only links)
   private allItems: NavItem[] = [
-    { label: 'Dashboard',     route: '/map' },
+    { label: 'Feeder Map',     route: '/map' },
     { label: 'Feeder',        route: '/feeder' },
     { label: 'Transformers',  route: '/transformers' },
     { label: 'Planner',       route: '/planner' },
