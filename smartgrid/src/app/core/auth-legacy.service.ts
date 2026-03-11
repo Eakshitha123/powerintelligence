@@ -22,8 +22,8 @@ export type AppRole =
 const PAGE_ACCESS: Record<string, AppRole[]> = {
   // landing/login ignored here (header hides there)
   '/map':             [ROLES.ADMIN, ROLES.DTCOM, ROLES.FIELD, ROLES.VIEWER],
-  '/feeder':          [ROLES.DTCOM, ROLES.FIELD, ROLES.VIEWER],     // Admin not allowed (same as old)
-  '/transformers':    [ROLES.DTCOM, ROLES.FIELD, ROLES.VIEWER],     // Admin not allowed
+  '/feeder':          [ROLES.ADMIN,ROLES.DTCOM, ROLES.FIELD, ROLES.VIEWER],     
+  '/transformers':    [ROLES.ADMIN,ROLES.DTCOM, ROLES.FIELD, ROLES.VIEWER],     
   '/planner':         [ROLES.ADMIN, ROLES.DTCOM, ROLES.FIELD],
   '/report':          [ROLES.ADMIN, ROLES.DTCOM, ROLES.VIEWER],     // reports.html -> /report
   '/settings':        [ROLES.ADMIN],
