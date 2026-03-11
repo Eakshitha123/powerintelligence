@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { register } from '../../../core/auth.service';
 import { Category, CATEGORY_INFO } from '../../../core/types';
 
@@ -32,7 +33,10 @@ export class RegisterComponent {
 
   form;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+  ) {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -197,5 +201,6 @@ export class RegisterComponent {
 
   onGoToLogin(): void {
     this.goToLogin.emit();
+    void this.router.navigate(['/login']);
   }
 }
